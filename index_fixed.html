@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08100b">
+<title>Получай деньги за задания</title>
+<style>
+:root{--bg:#080e0a;--panel:#111a14;--line:#26392c;--green:#8cffad;--muted:#9aab9f;--text:#f0f8f2;--red:#ff7777;--yellow:#ffd477}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0,#173b24,transparent 34%),var(--bg);color:var(--text);font:15px system-ui,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.layout{display:flex;min-height:100vh}.side{width:235px;position:fixed;inset:0 auto 0 0;background:#0b120d;border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column}.brand{display:flex;gap:10px;align-items:center;margin:0 8px 30px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#b5ffca,#39c66c);display:grid;place-items:center;color:#06210f;font-weight:900;font-size:21px}.brand b{font-size:14px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.5px;margin-top:3px}.navlabel{font-size:10px;letter-spacing:1.5px;color:#6e8173;padding:8px 12px}.nav{display:grid;gap:5px}.nav button{border:0;background:none;color:#b4c2b8;text-align:left;padding:12px;border-radius:10px}.nav button.active,.nav button:hover{background:#1a2a1e;color:var(--green)}.nav button span{display:inline-block;width:26px}.sidefoot{margin-top:auto;color:#718176;font-size:10px;padding:12px}
+main{margin-left:235px;width:calc(100% - 235px);padding:28px 34px 60px;max-width:1450px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}.eyebrow{font-size:11px;color:var(--muted);letter-spacing:1.4px;text-transform:uppercase}.top h1{margin:6px 0 0;font-size:25px}.user{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:50%;background:#1d3b27;color:var(--green);display:grid;place-items:center;font-weight:800}.user small{display:block;color:var(--muted);font-size:11px}.demo{border:1px solid #466b4e;color:var(--green);background:#122319;padding:6px 9px;border-radius:20px;font-size:10px}
+.page{display:none}.page.active{display:block}.hero{border:1px solid #34563c;border-radius:18px;padding:25px;background:linear-gradient(110deg,#14251a,#102017 60%,#193d26);display:flex;justify-content:space-between;align-items:flex-end;gap:20px}.muted{color:var(--muted)}.label{font-size:12px;color:#b5cbb9}.balance{font-size:42px;font-weight:850;margin:8px 0}.balance em{font-style:normal;color:var(--green)}.sub{font-size:11px;color:#9ab3a0}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#1a281e;color:var(--text);padding:10px 14px;border-radius:9px;font-weight:650}.btn.primary{background:var(--green);border-color:var(--green);color:#082012}.btn.danger{color:#ff9a9a;background:#2a1717;border-color:#653838}.btn:disabled{opacity:.5}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:16px 0 25px}.stat,.card,.task{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:22px;margin-top:7px}.head{display:flex;justify-content:space-between;align-items:center;margin:24px 0 13px}.head h2{font-size:17px;margin:0}.head p{font-size:12px;color:var(--muted);margin:5px 0 0}.tasks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.task .ico{width:37px;height:37px;border-radius:11px;background:#1c3825;display:grid;place-items:center}.task h3{font-size:14px;margin:12px 0 6px}.task p{font-size:12px;color:var(--muted);min-height:34px;line-height:1.5}.reward{color:var(--green);font-weight:800;margin:12px 0}.task button{width:100%;font-size:12px}.notice{margin-top:16px;padding:12px 14px;border:1px solid #65552d;border-radius:10px;background:#211d12;color:#e9d7a5;font-size:12px;line-height:1.5}.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card h3{font-size:15px;margin:0 0 13px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}.field input,.field select,.field textarea{width:100%;background:#0a110c;border:1px solid var(--line);border-radius:9px;color:var(--text);padding:11px}.field textarea{min-height:85px;resize:vertical}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:11px}.table{border-collapse:collapse;width:100%;min-width:520px}.table th,.table td{font-size:12px;text-align:left;padding:12px;border-bottom:1px solid var(--line)}.table th{color:var(--muted);background:#141e17}.table tr:last-child td{border:0}.pill{border-radius:20px;padding:4px 8px;background:#203027;color:#c7d9cc;font-size:10px}.pill.pending{background:#352b16;color:var(--yellow)}.pill.done{background:#173523;color:var(--green)}.adminstats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.adminstats .stat{padding:14px}.adminstats strong{font-size:20px}.toast{position:fixed;right:20px;bottom:20px;background:#1c3021;border:1px solid #4b7855;padding:12px 16px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.2s;z-index:9}.toast.show{opacity:1;transform:none}.mobile{display:none}
+@media(max-width:850px){.side{width:68px;padding:18px 8px}.brand{margin:0 5px 25px}.brand>div:last-child,.navlabel,.nav button .txt,.sidefoot{display:none}.nav button{text-align:center;padding:12px 5px}.nav button span{width:auto}main{margin-left:68px;width:calc(100% - 68px);padding:22px 18px}.tasks{grid-template-columns:repeat(2,1fr)}.adminstats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.side{display:none}main{margin:0;width:100%;padding:17px 13px 85px}.top h1{font-size:20px}.user>div:nth-child(2){display:none}.hero{display:block;padding:19px}.balance{font-size:35px}.actions{margin-top:16px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}.tasks,.cols{grid-template-columns:1fr}.mobile{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:5;background:#0b120d;border-top:1px solid var(--line);justify-content:space-around;padding:9px 2px calc(9px + env(safe-area-inset-bottom))}.mobile button{border:0;background:none;color:#9aab9f;font-size:10px;display:grid;gap:3px;justify-items:center}.mobile button.active{color:var(--green)}}
+
+/* Responsive layout fixes */
+html,body{max-width:100%;overflow-x:hidden}
+main,.page,.card,.stat,.task,.cols,.adminstats{min-width:0}
+.cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+.adminstats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tablewrap{width:100%;max-width:100%;min-width:0}
+#admin>.card{display:block;width:100%;max-width:100%}
+#admin .cols>*{min-width:0}
+#admin .table{min-width:520px}
+@media(max-width:850px){
+  main{min-width:0}
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .adminstats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:580px){
+  main{min-width:0;padding:17px 13px calc(95px + env(safe-area-inset-bottom))}
+  .top{gap:10px;align-items:flex-start}
+  .top h1{font-size:20px;line-height:1.25}
+  .user{flex-shrink:0;gap:7px}
+  .hero,.stat,.card,.task{min-width:0}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tasks,.cols{grid-template-columns:minmax(0,1fr)}
+  .adminstats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .adminstats .stat{padding:13px}
+  .adminstats strong{font-size:19px;overflow-wrap:anywhere}
+  #admin>.card{width:100%;max-width:none}
+  #admin .cols{display:grid;grid-template-columns:minmax(0,1fr);width:100%}
+  #admin .card{width:100%;max-width:100%}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .field input,.field select,.field textarea{min-width:0}
+  .mobile{padding-bottom:calc(9px + env(safe-area-inset-bottom))}
+}
+
+
+/* Desktop and laptop layout polish */
+@media (min-width: 851px){
+  html,body{min-height:100%;}
+  .side{width:245px;padding:28px 18px;}
+  main{margin-left:245px;width:calc(100% - 245px);max-width:none;padding:34px clamp(28px,3.2vw,58px) 70px;}
+  .page{width:100%;max-width:1580px;margin:0 auto;}
+  .top{max-width:1580px;margin:0 auto 30px;align-items:center;}
+  .top h1{font-size:29px;letter-spacing:-.4px;}
+  .eyebrow{font-size:12px;}
+  .hero{padding:32px 36px;min-height:190px;}
+  .balance{font-size:48px;}
+  .stats{gap:16px;margin:18px 0 30px;}
+  .stat,.card,.task{padding:21px;border-radius:16px;}
+  .stat strong{font-size:25px;}
+  .tasks{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+  .task{display:flex;flex-direction:column;align-items:stretch;}
+  .task button{margin-top:auto;min-height:42px;}
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+  .adminstats{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px;}
+  .adminstats .stat{padding:20px;}
+  #admin .cols{grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);align-items:start;}
+  #admin>.card{margin-top:18px!important;}
+  .table th,.table td{font-size:13px;padding:14px 16px;}
+  .btn{padding:11px 16px;}
+}
+@media (min-width: 1400px){
+  main{padding-left:64px;padding-right:64px;}
+  .page{max-width:1660px;}
+  .tasks{gap:18px;}
+}
+@media (min-width: 851px) and (max-width: 1100px){
+  .side{width:205px;padding:22px 12px;}
+  main{margin-left:205px;width:calc(100% - 205px);padding:26px 24px 60px;}
+  .adminstats{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #admin .cols{grid-template-columns:minmax(0,1fr);}
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="side">
+ <div class="brand"><div class="logo">₽</div><div><b>ПОЛУЧАЙ ДЕНЬГИ</b><small>ЗА ЗАДАНИЯ</small></div></div>
+ <div class="navlabel">ЛИЧНЫЙ КАБИНЕТ</div>
+ <nav class="nav">
+  <button class="active" data-page="home"><span>⌂</span><span class="txt">Главная</span></button>
+  <button data-page="tasks"><span>◈</span><span class="txt">Задания</span></button>
+  <button data-page="withdraw"><span>↗</span><span class="txt">Вывод средств</span></button>
+  <button data-page="history"><span>◷</span><span class="txt">История</span></button>
+  <button data-page="support"><span>?</span><span class="txt">Поддержка</span></button>
+  <div class="navlabel" style="margin-top:15px">УПРАВЛЕНИЕ</div>
+  <button data-page="admin"><span>⚙</span><span class="txt">Админ-панель</span></button>
+ </nav>
+ <div class="sidefoot">ДЕМОНСТРАЦИОННАЯ ВЕРСИЯ · 0.1</div>
+</aside>
+<main>
+<header class="top"><div><div class="eyebrow">Платформа заданий / <span id="crumb">Главная</span></div><h1 id="title">Зарабатывай за задания</h1></div><div class="user"><div class="avatar">U</div><div><b>Demo User</b><small>ID: USER-001</small></div><span class="demo">DEMO</span></div></header>
+
+<section class="page active" id="home">
+ <div class="hero"><div><div class="label">ТВОЙ ДЕМО-БАЛАНС</div><div class="balance"><em id="balance">125,00</em> ₽</div><div class="sub">Тестовые начисления · реальные выплаты не подключены</div></div><div class="actions"><button class="btn primary" onclick="show('tasks')">Найти задания</button><button class="btn" onclick="show('withdraw')">Вывести</button></div></div>
+ <div class="stats"><div class="stat"><small>Заработано сегодня</small><strong id="today">35,00 ₽</strong></div><div class="stat"><small>Выполнено заданий</small><strong id="count">3</strong></div><div class="stat"><small>Заявки на вывод</small><strong id="pending">0,00 ₽</strong></div></div>
+ <div class="head"><div><h2>Популярные задания</h2><p>Примеры заданий для демонстрации интерфейса</p></div><button class="btn" onclick="show('tasks')">Все задания →</button></div>
+ <div class="tasks">
+  <article class="task"><div class="ico">▶</div><h3>Посмотреть видео</h3><p>Демонстрация rewarded-рекламы.</p><div class="reward">+ 5,00 ₽</div><button class="btn" onclick="claim(5,'Просмотр видео')">Тестовое начисление</button></article>
+  <article class="task"><div class="ico">▤</div><h3>Пройти опрос</h3><p>Пример задания от партнёра.</p><div class="reward">+ 8,00 ₽</div><button class="btn" onclick="claim(8,'Опрос')">Тестовое начисление</button></article>
+  <article class="task"><div class="ico">✓</div><h3>Ежедневный бонус</h3><p>Тестовая награда за активность.</p><div class="reward">+ 2,00 ₽</div><button class="btn" onclick="claim(2,'Ежедневный бонус')">Получить</button></article>
+ </div>
+ <div class="notice">Это демонстрационный сайт: деньги не начисляются и не выплачиваются. Все суммы и задания тестовые.</div>
+</section>
+
+<section class="page" id="tasks">
+ <div class="head"><div><h2>Доступные задания</h2><p>Выбери задание, чтобы посмотреть тестовый сценарий.</p></div></div>
+ <div class="tasks">
+  <article class="task"><div class="ico">▶</div><h3>Рекламное видео</h3><p>Пример просмотра рекламы. SDK партнёра не подключён.</p><div class="reward">+ 5,00 ₽</div><button class="btn" onclick="claim(5,'Рекламное видео')">Демо-выполнение</button></article>
+  <article class="task"><div class="ico">▤</div><h3>Опрос</h3><p>Пример опроса от offerwall-партнёра.</p><div class="reward">+ 8,00 ₽</div><button class="btn" onclick="claim(8,'Опрос')">Демо-выполнение</button></article>
+  <article class="task"><div class="ico">✦</div><h3>Предложение партнёра</h3><p>Пример задания с проверкой результата.</p><div class="reward">+ 10,00 ₽</div><button class="btn" onclick="claim(10,'Оффер партнёра')">Демо-выполнение</button></article>
+ </div>
+ <div class="notice">В рабочей версии начисления должны подтверждаться серверным уведомлением от рекламной или offerwall-платформы, а не простым нажатием кнопки.</div>
+</section>
+
+<section class="page" id="withdraw">
+ <div class="cols">
+  <div class="card"><h3>Заявка на вывод</h3><p class="muted" style="font-size:12px">Форма для демонстрации будущего процесса.</p>
+   <div class="field"><label>Сумма, ₽ (минимум 50)</label><input id="amount" type="number" min="50" step="1" placeholder="100"></div>
+   <div class="field"><label>Способ получения</label><select><option>Банковская карта (демо)</option><option>Банковский счёт (демо)</option></select></div>
+   <div class="field"><label>Тестовый идентификатор получателя</label><input id="recipient" placeholder="Например, TEST-USER-001"></div>
+   <button class="btn primary" onclick="withdraw()">Создать демо-заявку</button>
+  </div>
+  <div class="card"><h3>Перед реальными выплатами</h3><p class="muted" style="font-size:13px;line-height:1.8">Потребуются договор с платёжным провайдером, серверная проверка баланса, проверка личности в предусмотренных случаях, защита от мошенничества и достаточный подтверждённый доход платформы.</p><div class="notice">Не вводи здесь номер настоящей карты, CVV или PIN. Реквизиты не должны собираться этой демо-страницей.</div></div>
+ </div>
+</section>
+
+<section class="page" id="history">
+ <div class="head"><div><h2>История операций</h2><p>События текущего демо-сеанса</p></div></div>
+ <div class="tablewrap"><table class="table"><thead><tr><th>Операция</th><th>Дата</th><th>Сумма</th><th>Статус</th></tr></thead><tbody id="historyRows"><tr><td>Стартовый демо-баланс</td><td>Сегодня</td><td>+125,00 ₽</td><td><span class="pill done">Тест</span></td></tr></tbody></table></div>
+</section>
+
+<section class="page" id="support">
+ <div class="cols"><div class="card"><h3>Написать в поддержку</h3><div class="field"><label>Тема обращения</label><select id="topic"><option>Вопрос по заданию</option><option>Баланс и начисления</option><option>Жалоба на пользователя</option><option>Другое</option></select></div><div class="field"><label>Сообщение</label><textarea id="message" placeholder="Опиши вопрос..."></textarea></div><button class="btn primary" onclick="toast('Демо-обращение не отправлено на сервер')">Отправить</button></div><div class="card"><h3>Безопасность</h3><p class="muted" style="font-size:13px;line-height:1.8">Не отправляй пароли, PIN-коды, CVV и полные данные карты. Жалобы на скам должны проверяться модератором, с фиксацией причины и возможностью обжалования.</p></div></div>
+</section>
+
+<section class="page" id="admin">
+ <div class="notice" style="margin:0 0 15px">Демо-панель без настоящей авторизации. Перед публикацией админ-доступ нужно перенести на сервер, включить 2FA и проверку ролей.</div>
+ <div class="adminstats"><div class="stat"><small>Пользователи</small><strong>1</strong></div><div class="stat"><small>Заявки</small><strong id="reqCount">0</strong></div><div class="stat"><small>На проверке</small><strong>0</strong></div><div class="stat"><small>Демо-баланс</small><strong id="adminBalance">125 ₽</strong></div></div>
+ <div class="cols">
+  <div class="card"><h3>Заявки на вывод</h3><div class="tablewrap"><table class="table"><thead><tr><th>ID</th><th>Сумма</th><th>Статус</th><th>Действие</th></tr></thead><tbody id="requests"><tr><td colspan="4" class="muted">Заявок нет</td></tr></tbody></table></div></div>
+  <div class="card"><h3>Модерация пользователей</h3><div class="field"><label>ID пользователя</label><input value="USER-001" id="uid"></div><div class="field"><label>Причина блокировки</label><input id="reason" placeholder="Краткая причина"></div><div class="actions"><button class="btn danger" onclick="ban(true)">Бан</button><button class="btn" onclick="ban(false)">Разбан</button></div><p id="banStatus" class="muted" style="font-size:12px;margin-top:13px">Статус USER-001: активен</p></div>
+ </div>
+ <div class="card" style="margin-top:14px"><h3>Журнал администратора</h3><div id="audit" class="muted" style="font-size:12px">Демо-система запущена.</div></div>
+</section>
+</main>
+</div>
+<nav class="mobile">
+ <button class="active" data-page="home">⌂<span>Главная</span></button><button data-page="tasks">◈<span>Задания</span></button><button data-page="withdraw">↗<span>Вывод</span></button><button data-page="history">◷<span>История</span></button><button data-page="admin">⚙<span>Админ</span></button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+let balance=125,today=35,count=3,requests=[],isBanned=false,log=[];
+const fmt=n=>n.toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2});
+function toast(s){let t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)}
+function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));let n={home:'Главная',tasks:'Задания',withdraw:'Вывод средств',history:'История',support:'Поддержка',admin:'Админ-панель'};document.getElementById('crumb').textContent=n[id];document.getElementById('title').textContent=id==='home'?'Зарабатывай за задания':n[id];window.scrollTo(0,0)}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.page)));
+function update(){document.getElementById('balance').textContent=fmt(balance);document.getElementById('today').textContent=fmt(today)+' ₽';document.getElementById('count').textContent=count;document.getElementById('pending').textContent=fmt(requests.filter(r=>r.status==='Ожидает').reduce((s,r)=>s+r.amount,0))+' ₽';document.getElementById('adminBalance').textContent=fmt(balance)+' ₽';document.getElementById('reqCount').textContent=requests.length}
+function hist(name,amount,status='Тест'){let tr=document.createElement('tr');let d=new Date().toLocaleString('ru-RU');[name,d,(amount>=0?'+':'')+fmt(amount)+' ₽',status].forEach((v,i)=>{let td=document.createElement('td');if(i===3){let sp=document.createElement('span');sp.className='pill '+(status==='Ожидает'?'pending':'done');sp.textContent=v;td.append(sp)}else td.textContent=v;tr.append(td)});document.getElementById('historyRows').prepend(tr)}
+function claim(amount,name){if(isBanned){toast('Аккаунт заблокирован');return}balance+=amount;today+=amount;count++;update();hist(name,amount);toast('Демо-начислено '+fmt(amount)+' ₽')}
+function withdraw(){let amount=Number(document.getElementById('amount').value);let recipient=document.getElementById('recipient').value.trim();if(!Number.isFinite(amount)||amount<50){toast('Минимальная демо-заявка — 50 ₽');return}if(amount>balance){toast('Недостаточно средств на демо-балансе');return}if(!recipient){toast('Укажи тестовый ID получателя');return}balance-=amount;let r={id:'DEMO-'+String(requests.length+1).padStart(3,'0'),amount,status:'Ожидает'};requests.push(r);hist('Заявка на вывод '+r.id,-amount,'Ожидает');document.getElementById('amount').value='';document.getElementById('recipient').value='';renderRequests();update();toast('Демо-заявка создана')}
+function renderRequests(){let body=document.getElementById('requests');body.innerHTML='';if(!requests.length){body.innerHTML='<tr><td colspan="4" class="muted">Заявок нет</td></tr>';return}requests.forEach(r=>{let tr=document.createElement('tr');let vals=[r.id,fmt(r.amount)+' ₽',r.status];vals.forEach((v,i)=>{let td=document.createElement('td');td.textContent=v;if(i===2){let p=document.createElement('span');p.className='pill '+(r.status==='Ожидает'?'pending':'done');p.textContent=v;td.textContent='';td.append(p)}tr.append(td)});let td=document.createElement('td');if(r.status==='Ожидает'){let b=document.createElement('button');b.className='btn';b.textContent='Одобрить демо';b.onclick=()=>{r.status='Одобрено (демо)';renderRequests();hist('Одобрение '+r.id,0,'Тест');auditAdd('Заявка '+r.id+' одобрена в демо');toast('Статус изменён только в демо')};td.append(b)}else td.textContent='—';tr.append(td);body.append(tr)})}
+function auditAdd(s){log.unshift(new Date().toLocaleString('ru-RU')+' — '+s);document.getElementById('audit').textContent=log.join(' | ')}
+function ban(v){let id=document.getElementById('uid').value.trim()||'не указан',reason=document.getElementById('reason').value.trim();if(v&&!reason){toast('Укажи причину блокировки');return}isBanned=v;document.getElementById('banStatus').textContent='Статус '+id+': '+(v?'заблокирован':'активен');auditAdd((v?'Бан ':'Разбан ')+id+(v?' — '+reason:''));toast(v?'Демо-блокировка включена':'Демо-разблокировка выполнена')}
+update();
+</script>
+</body></html>
