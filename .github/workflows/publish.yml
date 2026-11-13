@@ -1,0 +1,18 @@
+name: Publish to Roblox
+
+on:
+  workflow_dispatch: # Позволяет запускать процесс вручную кнопкой
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Publish Place
+        run: |
+          curl -X POST "https://apis.roblox.com/universes/v1/9839609926/places/104777647658733/versions?versionType=Published" \
+          -H "x-api-key: ${{ secrets.ROBLOX_API_KEY }}" \
+          -H "Content-Type: application/octet-stream" \
+          --data-binary "game.rbxl"
